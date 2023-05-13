@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Data</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        h1 {
+        text-align: center;
+        }
+
+        form {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        label, input[type="text"], input[type="number"] {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Edit Data</h1>
+        <form method="POST" action="/edit/{{ veri.id }}">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ veri.first_name }}" required><br><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ veri.last_name }}" required><br><br>
+
+        <label for="car_model">Car Model:</label>
+        <input type="text" id="car_model" name="car_model" value="{{ veri.car_model }}" required><br><br>
+
+        <label for="car_km">Car KM:</label>
+        <input type="number" id="car_km" name="car_km" value="{{ veri.car_km }}" required><br><br>
+
+        <label for="car_year">Car Year:</label>
+        <input type="number" id="car_year" name="car_year" value="{{ veri.car_year }}" required><br><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ veri.phone_number }}" required><br><br>
+
+        <input type="submit" value="Save">
+        </form>
+    </div>
+</body>
+</html>

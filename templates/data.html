@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Control</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+        input[type="text"] {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="searchInput" placeholder="Search..." onkeyup="search()">
+
+        <table id="veriTable">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Car Model</th>
+                <th>Car KM</th>
+                <th>Car Year</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+            {% for veri in veriler %}
+            <tr>
+                <td>{{ veri.id }}</td>
+                <td>{{ veri.first_name }}</td>
+                <td>{{ veri.last_name }}</td>
+                <td>{{ veri.car_model }}</td>
+                <td>{{ veri.car_km }}</td>
+                <td>{{ veri.car_year }}</td>
+                <td>{{ veri.phone_number }}</td>
+                <td>
+                    <a href="/edit/{{ veri.id }}">Edit</a>
+                    <a href="/delete/{{ veri.id }}">Delete</a>
+                    <a href="/details/{{ veri.id }}">Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script>
+        function search() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("veriTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
